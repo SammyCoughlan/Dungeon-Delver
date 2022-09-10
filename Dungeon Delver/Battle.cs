@@ -61,11 +61,18 @@ namespace Dungeon_Delver
             Monster = rand.Next(4);
             MonHealth = Convert.ToInt32(Monsters[Monster, 3]);
 
-            Console.WriteLine("Before you have any more time to explore, you notice something begins to materialize before you. Where once there was nothing, suddenly there is a " + Monsters[Monster, 0] + " standing there waiting for you. you barley have time to open your mouth before it lunges, attacking you.");
+            Console.WriteLine("Before you have any more time to explore, you notice something begins to materialize before you. \nWhere once there was nothing, suddenly there is a ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(Monsters[Monster, 0]);
+            Console.ResetColor();
+            Console.Write(" standing there waiting for you. \nyou barley have time to open your mouth before it lunges, attacking you.");
         }
 
         internal override bool Obstacle()
         {
+
+            Console.WriteLine("Press any button to continue.");
+            Console.ReadLine();
             while (MonHealth > 0 && Health > 0)
             {
 
@@ -73,10 +80,12 @@ namespace Dungeon_Delver
                 Console.WriteLine("Your health is " + Health + ". The Monsters health is " + MonHealth + ". Press any button to swing.");
                 Console.ReadLine();
 
-                Console.WriteLine("You attack!");
+                Console.WriteLine("You attack...");
                 if (PCAttack() == true)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You land a mighty blow!");
+                    Console.ResetColor();
                     MonHealth--;
                 }
                 else
@@ -87,7 +96,9 @@ namespace Dungeon_Delver
                 Console.WriteLine("The monster swings...");
                 if(MonsterAttack() == true)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You try to dodge, but the monster is too quick and lands an attack. You feel the searing burn of a new wound.");
+                    Console.ResetColor();
                     Health--;
                 }
                 else
@@ -99,16 +110,16 @@ namespace Dungeon_Delver
                 Console.ReadLine();
 
             }
-
-            if (MonHealth == 0 && Health != 0)
+            Console.Clear();
+            if (MonHealth <= 0 && Health != 0)
             {
                 Console.WriteLine("With a final blow the monster falls, dissapearing into nothingness before it can hit the ground.");
-                Console.WriteLine("With a sacrifice taken, the labrynth rewards you. you feel any wounds you have close and heal, and you no longer feel the exaution of battle.");
+                Console.WriteLine("With a sacrifice taken, the labrynth rewards you. \nyou feel any wounds you have close and heal, and you no longer feel the exhaution of battle.");
                 Win = true;
             }
-            else if (MonHealth == 0 && Health == 0)
+            else if (MonHealth <= 0 && Health <= 0)
             {
-                Console.WriteLine("You and the monster swing at the same time, each landing a blow on the other. You feel the monsters attack tear through you, and you begin to fall, knowing your death is approaching. as you fall, time slows, the world goes dark, and you begin to feel the labrynth stir. It has claimed another soul to itself.");
+                Console.WriteLine("You and the monster swing at the same time, each landing a blow on the other. \nYou feel the monsters attack tear through you, and you begin to fall, knowing your death is approaching. \nas you fall, time slows, the world goes dark, and you begin to feel the labrynth stir. It has claimed another soul to itself.");
                 Win = false;
             }
             else
@@ -116,6 +127,8 @@ namespace Dungeon_Delver
                 Console.WriteLine("The beast lands a killing blow on you. You feel the monsters attack tear through you, and you begin to fall, knowing your death is approaching. as you fall, time slows, the world goes dark, and you begin to feel the labrynth stir. It has claimed another soul to itself.");
                 Win = false;
             }
+            Console.WriteLine("Press any button to continue");
+            Console.ReadKey();
             return Win;
 
         }

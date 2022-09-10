@@ -10,6 +10,7 @@ namespace Dungeon_Delver
     {
 
         //with this multidimensional array, the riddle will always be at 0 and the correct answer at 4
+        //Riddles taken from GreetingCardPoet.com
         internal override void Enter()
         {
             PuzzleType = "Riddle";
@@ -18,9 +19,9 @@ namespace Dungeon_Delver
 
         internal override bool Obstacle()
         {
-            string[,] RiddleArray = { {"Riddle","choice 1","Choice 2", "Choice 3","Correct answer"},
-                                           {"Riddle","choice 1","Choice 2", "Choice 3","Correct Answer"},
-                                           {"Riddle","choice 1","Choice 2", "Choice 3","Correct Answer"} };
+            string[,] RiddleArray = { {"What starts with an 'E', and ends with and 'E', but only has one letter in it.","Darkness","Your name", "A Clockface","An Envelope"},
+                                           {"You can carry it everywhere you go, and it does not get heavy. What is it?","Darkness","A Clockface", "An Envelope","Your Name"},
+                                           {"The more there is, the less you see. What am I?","An Envelope","A Clockface", "Your Name","Darkness"} };
             int riddle;
             var rnd = new Random();
             riddle = rnd.Next(3);

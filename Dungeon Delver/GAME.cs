@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Dungeon_Delver
 {
     internal class GAME
     {
+        
 
         internal ROOM room1;
         internal ROOM room2;
@@ -20,14 +23,34 @@ namespace Dungeon_Delver
 
         internal void Run()
         {
-            Console.WriteLine("Welcome to the Labrynth. Many people enter in hopes of glory, fortune, and recognition. It is a dangerous place where everytime it is entered, its passages shift. Many go in, very few come out, and fewer still escape with anything but fear for this place. And yet, here you stand. Please enter your name: ");
+            Console.Clear();
+            string Banner = @"
+_________          _______    _        _______  ______            _______ _________ _       _________         
+\__   __/|\     /|(  ____ \  ( \      (  ___  )(  ___ \ |\     /|(  ____ )\__   __/( (    /|\__   __/|\     /|
+   ) (   | )   ( || (    \/  | (      | (   ) || (   ) )( \   / )| (    )|   ) (   |  \  ( |   ) (   | )   ( |
+   | |   | (___) || (__      | |      | (___) || (__/ /  \ (_) / | (____)|   | |   |   \ | |   | |   | (___) |
+   | |   |  ___  ||  __)     | |      |  ___  ||  __ (    \   /  |     __)   | |   | (\ \) |   | |   |  ___  |
+   | |   | (   ) || (        | |      | (   ) || (  \ \    ) (   | (\ (      | |   | | \   |   | |   | (   ) |
+   | |   | )   ( || (____/\  | (____/\| )   ( || )___) )   | |   | ) \ \_____) (___| )  \  |   | |   | )   ( |
+   )_(   |/     \|(_______/  (_______/|/     \||/ \___/    \_/   |/   \__/\_______/|/    )_)   )_(   |/     \|
+                                                                                                              
+";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Red;
+
+            Console.WriteLine(Banner);
+
+            Console.ResetColor();
+
+            Console.WriteLine("Welcome to the Labyrintnth. Many people enter in hopes of glory, fortune, and recognition.\nIt is a dangerous place where everytime it is entered, its passages shift.\nMany go in, very few come out, and fewer still escape with anything but fear for this place. \n\nAnd yet, here you stand. Please enter your name: ");
 
             name = Console.ReadLine();
             Console.WriteLine("Welcome "+ name+". Are you ready to enter? press any key to continue");
             Console.ReadKey();
 
             Console.WriteLine("Are you a A) Warrior, or a B) Rogue?: ");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine().ToUpper();
             if(input== "A")
             {
                 Profession = "Warrior";
@@ -52,14 +75,14 @@ namespace Dungeon_Delver
             room1.Enter();
             if(room1.Obstacle() == false)
             {
-                Environment.Exit(0);
+                GameOver();
             }
             else
             {
                 room2.Enter();
                 if(room2.Obstacle() == false)
                 {
-                    Environment.Exit(0);
+                    GameOver();
 
                 }
                 else
@@ -67,16 +90,14 @@ namespace Dungeon_Delver
                     room3.Enter();
                     if( room3.Obstacle() == false)
                     {
-                        Environment.Exit(0);
+                        GameOver();
                     }
                     else
                     {
-                        Console.WriteLine("Having made it successfully through all 3 dungeons, you find yourself in a completley new room. It is filled with gold coin. You win");
+                        GameWin();
                     }
                 }
             }
-            //room2.Enter();
-            //room3.Enter();
 
 
 
@@ -106,6 +127,45 @@ namespace Dungeon_Delver
                     break;
             }
         }
+        internal static void GameOver()
+        {
+            string input;
+            Console.Clear();
+            Console.WriteLine("You have failed. but do not feel bad, the Labrynth has claimed many a soul, you are not the first, and you will not be the last.");
+            Console.WriteLine("Would you like to try again? Yes or No");
+            input = Console.ReadLine().ToLower();
+            if(input == "yes")
+            {
+                GAME newGame = new GAME();
+                newGame.Run();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+        }
 
+        internal void GameWin()
+        {
+            string input;
+            Console.Clear();
+            Console.WriteLine("As you step out of the final room, your eyes are greeted with piles upon piles of gleaming Gold, and shimmering treasure. \nYou have bested the labyrinth.\nBefore you can fill you pockets wtih gold, text once again appears in the air.");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Continue?");
+            Console.ResetColor();
+            Console.WriteLine("They hang there menancingly. Do you wish to push you luck once more, or take your gold and escape? \nYes to continue, No to escape:");
+            input = Console.ReadLine().ToLower();
+            if (input == "yes")
+            {
+                GAME newGame = new GAME();
+                newGame.Run();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+
+
+        }
     }
 }
