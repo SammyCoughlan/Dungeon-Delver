@@ -18,7 +18,6 @@ namespace Dungeon_Delver
         internal ROOM room2;
         internal ROOM room3;
         internal string name;
-
         public static string Profession;
 
         internal void Run()
@@ -43,26 +42,44 @@ _________          _______    _        _______  ______            _______ ______
 
             Console.ResetColor();
 
-            Console.WriteLine("Welcome to the Labyrintnth. Many people enter in hopes of glory, fortune, and recognition.\nIt is a dangerous place where everytime it is entered, its passages shift.\nMany go in, very few come out, and fewer still escape with anything but fear for this place. \n\nAnd yet, here you stand. Please enter your name: ");
+            Console.WriteLine("Welcome to the Labyrintnth. Many people enter in hopes of glory, fortune, and recognition.\nIt is a dangerous place where everytime it is entered, its passages shift.\nMany go in, very few come out, and fewer still escape with anything but fear for this place. \n\nAnd yet, here you stand. Before you enter, are you: ");
 
-            name = Console.ReadLine();
-            Console.WriteLine("Welcome "+ name+". Are you ready to enter? press any key to continue");
-            Console.ReadKey();
-
-            Console.WriteLine("Are you a A) Warrior, or a B) Rogue?: ");
+            Console.WriteLine("\nA) Warrior \nor a \nB) Rogue?: ");
             string input = Console.ReadLine().ToUpper();
-            if(input== "A")
+
+            while (string.IsNullOrEmpty(input))
             {
-                Profession = "Warrior";
-            }else if(input== "B")
-            {
-                Profession = "Rogue";
+                Console.WriteLine("Please input A or B: ");
+                input = Console.ReadLine().ToUpper();
+                if (input == "A")
+                {
+                    Profession = "Warrior";
+                }
+                else if (input == "B")
+                {
+                    Profession = "Rogue";
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: Profession not found");
+                    Profession = "";
+                }
+
             }
-            else
+
+            
+
+            Console.WriteLine("And what is your name?: ");
+            name = Console.ReadLine();
+            //how to check for empty strings from user Max Doumit on Stack Overflow
+            while (string.IsNullOrEmpty(name))
             {
-                Console.WriteLine("ERROR: Profession not found");
-                Profession = "Warrior";
+                Console.WriteLine("Please enter a name: ");
+                name = Console.ReadLine();
             }
+
+            Console.WriteLine("Welcome: the " + Profession + " " + name + "! Press any key to enter the labyrinth.");
+            Console.ReadLine();
 
             room1 = GenerateDungeon();
             room2 = GenerateDungeon();
@@ -134,6 +151,11 @@ _________          _______    _        _______  ______            _______ ______
             Console.WriteLine("You have failed. but do not feel bad, the Labrynth has claimed many a soul, you are not the first, and you will not be the last.");
             Console.WriteLine("Would you like to try again? Yes or No");
             input = Console.ReadLine().ToLower();
+            while (!string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine("Please enter a valid response (Either Yes or No): ");
+                input = Console.ReadLine().ToLower();
+            }
             if(input == "yes")
             {
                 GAME newGame = new GAME();
@@ -155,6 +177,11 @@ _________          _______    _        _______  ______            _______ ______
             Console.ResetColor();
             Console.WriteLine("They hang there menancingly. Do you wish to push you luck once more, or take your gold and escape? \nYes to continue, No to escape:");
             input = Console.ReadLine().ToLower();
+            while (!string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine("Please enter a valid response (Either Yes or No): ");
+                input = Console.ReadLine().ToLower();
+            }
             if (input == "yes")
             {
                 GAME newGame = new GAME();
@@ -167,5 +194,6 @@ _________          _______    _        _______  ______            _______ ______
 
 
         }
+
     }
 }

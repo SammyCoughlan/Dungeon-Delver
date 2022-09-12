@@ -17,7 +17,7 @@ namespace Dungeon_Delver
         internal void Description()
         {
             Console.Clear();
-            Console.WriteLine("As you enter the room, the closes behind you.\nYou turn only to see a smooth wall with no sign of the door you just came through. \nAbove you letters begin to write in the air. \nThey stay afloat, reading: ");
+            Console.WriteLine("As you enter the room, the door closes behind you.\nYou turn only to see a smooth wall with no sign of the door you just came through. \nAbove you letters begin to write in the air. \nThey stay afloat, reading: ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n"+PuzzleType+"\n");
             Console.ResetColor();
