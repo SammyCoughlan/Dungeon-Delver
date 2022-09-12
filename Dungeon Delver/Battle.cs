@@ -56,7 +56,7 @@ namespace Dungeon_Delver
 
         internal void SummonMonster()
         {
-            //Help converting an object into an int from educba.com
+            
             Random rand = new Random();
             Monster = rand.Next(4);
             MonHealth = Convert.ToInt32(Monsters[Monster, 3]);

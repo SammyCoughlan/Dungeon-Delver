@@ -71,7 +71,7 @@ _________          _______    _        _______  ______            _______ ______
 
             Console.WriteLine("And what is your name?: ");
             name = Console.ReadLine();
-            //how to check for empty strings from user Max Doumit on Stack Overflow
+            
             while (string.IsNullOrEmpty(name))
             {
                 Console.WriteLine("Please enter a name: ");

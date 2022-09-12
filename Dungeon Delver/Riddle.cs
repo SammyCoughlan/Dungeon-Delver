@@ -10,7 +10,7 @@ namespace Dungeon_Delver
     {
 
         //with this multidimensional array, the riddle will always be at 0 and the correct answer at 4
-        //Riddles taken from GreetingCardPoet.com
+        
         internal override void Enter()
         {
             PuzzleType = "Riddle";
@@ -42,8 +42,8 @@ namespace Dungeon_Delver
             string answer = Console.ReadLine();
             int answer1;
 
-        //help converting a string to integer from Stack Overflow user Sujith Karivelil
-        //https://stackoverflow.com/questions/36003874/c-sharp-parsing-or-creating-int-and-string-from-readline
+        
+       
 
             if (!Int32.TryParse(answer, out answer1))
             {
