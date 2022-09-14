@@ -45,12 +45,12 @@ namespace Dungeon_Delver
             if (prof == "Warrior")
             {
                 Dodge = 15;
-                Attack = +5;
+                Attack = 5;
             }
             else if (prof == "Rogue")
             {
                 Dodge = 18;
-                Attack = +2;
+                Attack = 2;
             }
         }
 

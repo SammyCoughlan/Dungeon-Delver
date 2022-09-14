@@ -18,6 +18,7 @@ namespace Dungeon_Delver
         internal ROOM room2;
         internal ROOM room3;
         internal string name;
+        internal string input;
         public static string Profession;
 
         internal void Run()
@@ -44,13 +45,14 @@ _________          _______    _        _______  ______            _______ ______
 
             Console.WriteLine("Welcome to the Labyrintnth. Many people enter in hopes of glory, fortune, and recognition.\nIt is a dangerous place where everytime it is entered, its passages shift.\nMany go in, very few come out, and fewer still escape with anything but fear for this place. \n\nAnd yet, here you stand. Before you enter, are you: ");
 
-            Console.WriteLine("\nA) Warrior \nor a \nB) Rogue?: ");
-            string input = Console.ReadLine().ToUpper();
 
-            while (string.IsNullOrEmpty(input))
+
+            do
             {
+                Console.WriteLine("\nA) Warrior \nor a \nB) Rogue?: ");
                 Console.WriteLine("Please input A or B: ");
                 input = Console.ReadLine().ToUpper();
+
                 if (input == "A")
                 {
                     Profession = "Warrior";
@@ -65,9 +67,10 @@ _________          _______    _        _______  ______            _______ ______
                     Profession = "";
                 }
 
-            }
+            } while (string.IsNullOrEmpty(input));
 
-            
+
+
 
             Console.WriteLine("And what is your name?: ");
             name = Console.ReadLine();
