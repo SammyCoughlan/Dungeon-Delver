@@ -150,7 +150,7 @@ namespace Dungeon_Delver
 
         internal bool MonsterAttack()
         {
-            MonToHit = Roll() + Convert.ToInt32(Monsters[Monster, 2]);
+            MonToHit = Roll() + Convert.ToInt32(Monsters[Monster, 1]);
             if (MonToHit >= Dodge)
             {
                 MonHit = true;
